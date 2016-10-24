@@ -12,8 +12,11 @@ int main(int argc, char ** argv)
 
     if (file == NULL)
         return -1; //return NULL; //could not open file
-
-    code = malloc(1000);
+    fseek(file, 0, SEEK_END); // seek to end of file
+    long size = ftell(file); // get current file pointer
+    fseek(file, 0, SEEK_SET); // seek back to beginning of file
+    //code = malloc(1000);
+    code = malloc(size);
 
     while ((c = fgetc(file)) != EOF)
     {
